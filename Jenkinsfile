@@ -1,15 +1,21 @@
 pipeline {
     agent any
+
     stages {
-        stage('Build') {
+        stage('Clone Repo') {
             steps {
-                echo 'Building the project...'
+                git 'https://github.com/your-username/your-repo-name.git'
+            }
+        }
+
+        stage('Compile') {
+            steps {
                 sh 'javac HelloWorld.java'
             }
         }
+
         stage('Run') {
             steps {
-                echo 'Running the project...'
                 sh 'java HelloWorld'
             }
         }
